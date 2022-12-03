@@ -21,7 +21,25 @@
         [X] - donnée non trouvée (par sécurité on n'indiquera pas si l'erreur proviens de mot de passe ou du nom d'user)
 
 
-## erreur a noter
+## FONCTIONNEMENT
+### index
+- action: void
+    *default*
+    - [provisoire] appelle un template
+
+- action: test
+    *pour effectuer des test de routing*
+    - `die('index.php TEST PAGE');`
+
+- action: login
+    - `$GLOBALS['controller']->login();`
+
+- action: acces
+    - [provisoire] `die('acces !');`
+
+
+
+## erreurs a noter
 ERROR on Manager::get_user: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''gin' at line 1
 
 BAD

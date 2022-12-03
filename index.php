@@ -46,6 +46,8 @@ try {
             die('index.php TEST PAGE');
         }
 
+        // CONNEXION PART
+
         /**
          * login
          * from connection.php form
@@ -61,8 +63,7 @@ try {
          * 
          */
         if($_GET['action'] === 'acces') {
-            // die('acces !');
-            die(var_dump($_POST));
+            die('acces !' . var_dump($_POST));
         }
 
     }
