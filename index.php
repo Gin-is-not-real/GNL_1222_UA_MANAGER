@@ -47,6 +47,19 @@ try {
             die('index.php TEST PAGE');
         }
 
+
+        // REGISTER PART
+
+        /**
+         * register
+         * from register.php form
+         * 
+         */
+        if($_GET['action'] === 'register') {
+            $GLOBALS['controller']->register();
+        }
+
+
         // CONNEXION PART
 
         /**

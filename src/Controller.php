@@ -2,8 +2,24 @@
 
 class Controller {
     
+    public function register() {
+        die(' register' . var_dump($_POST));
+
+        // get inputs value from register form
+        $email = $_POST['email'];
+        $username = $_POST['username'];
+        $password = $_POST['password'];        
+        $r_password = $_POST['r-password'];
+
+
+        // check data integrity
+        
+        
+    }
+
+
     /**
-     * 
+     * Check correspondance between user inputs from connexion form and the database, by calling a manager method
      */
     public function login() {
         // get inputs value from connection form

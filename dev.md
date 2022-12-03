@@ -21,7 +21,7 @@
         [X] - donnée non trouvée (par sécurité on n'indiquera pas si l'erreur proviens de mot de passe ou du nom d'user)
     [ ] - perte mdp 
 
-[ ] - formulaire d'enregistrement
+[X] - formulaire d'enregistrement
     [ ] - indications user
         [ ] - format attendu
         [ ] - champs requis
