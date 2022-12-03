@@ -1,4 +1,4 @@
-<article class="gnl-con-main-container">
+<article>
 
     <form action="index.php?action=login" method="post">
 
@@ -7,7 +7,7 @@
             <h3>Please enter username and password</h3>
 
             <!-- for user notifications, like errors -->
-            <div class="gnl-con-notice">
+            <div class="notice">
 
                 <!-- POST connexion error -->
                 <?php
