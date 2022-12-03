@@ -19,9 +19,21 @@
     [X] - notification des erreurs
         [ ] - saisie vide (js)
         [X] - donnée non trouvée (par sécurité on n'indiquera pas si l'erreur proviens de mot de passe ou du nom d'user)
+    [ ] - perte mdp 
 
-
-## FONCTIONNEMENT
+[ ] - formulaire d'enregistrement
+    [ ] - indications user
+        [ ] - format attendu
+        [ ] - champs requis
+    [ ] - verification
+        [X] - inputs securisés (via index.php)
+        [ ] - input anti bot 
+    [ ] - validation
+        [ ] - php
+        [ ] - js
+    [X] - notification des erreurs
+        [ ] - saisie vide (js)
+        [ ] - donnée non trouvée
 ### index
 - action: void
     *default*
