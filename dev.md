@@ -34,6 +34,8 @@
     [X] - notification des erreurs
         [ ] - saisie vide (js)
         [ ] - donnée non trouvée
+
+        
 ### index
 - action: void
     *default*
@@ -43,12 +45,31 @@
     *pour effectuer des test de routing*
     - `die('index.php TEST PAGE');`
 
+- action: register
+    - `$GLOBALS['controller']->login();`
+
 - action: login
     - `$GLOBALS['controller']->login();`
 
 - action: acces
     - [provisoire] `die('acces !');`
 
+
+### form validation chart
+- email: xx@
+
+
+## controller
+    $username = $_POST["username"];
+
+    // range
+    if(strlen($username) < 2 OR strlen($username) > 30) {
+        $errors['username'] = "username must be between 2 and 30";
+    } 
+    // allowed chars
+    if(!preg_match("/^[a-zA-Z0-9- ]*$/", $username)) {
+        $errors['username'] = "username contains characters not allowed, like symbols";
+    }
 
 
 ## erreurs a noter
@@ -59,3 +80,9 @@ $query = $pdo->query("SELECT * FROM users WHERE username='" . $username);
 
 GOOD
 $query = $pdo->query("SELECT * FROM users WHERE username='" . $username . "'");
+
+
+## a noter
+if (!preg_match("/^[a-zA-Z-' ]*$/",$_POST["username"])) {
+    $nameErr = "Only letters and white space allowed";
+}
