@@ -11,8 +11,13 @@
 
                 <!-- POST connexion error -->
                 <?php
-                     echo isset($_POST['connexion-error']) ? $_POST['connexion-error'] : '';      
+                    if(!empty($_POST['connexion-error'])) {
+                        echo '<ul><li>';
+                        echo $_POST['connexion-error'];
+                        echo '</li></ul>';
+                    }     
                 ?>
+                </ul>
 
             </div>
         </header>

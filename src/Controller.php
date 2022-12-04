@@ -1,6 +1,11 @@
 <?php
 
 class Controller {
+
+    /**
+     * Check validaty of register form user inputs and return errors
+     * @return Array - the list of errors
+     */
     public function valid_register_inputs() {
         $errors = [];
     
@@ -82,11 +87,14 @@ class Controller {
                 }
             }
         }
-    
 
         return $errors;
     }
 
+
+    /**
+     * 
+     */
     public function register() {
 
         // get inputs value from register form
@@ -100,6 +108,9 @@ class Controller {
 
         require_once 'templates/register.php';
     }
+
+
+    
     /**
      * Check correspondance between user inputs from connexion form and the database, by calling a manager method
      */
