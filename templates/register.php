@@ -9,10 +9,21 @@
             <!-- for user notifications, like errors -->
             <div class="notice">
 
+                <ul>
                 <!-- POST connexion error -->
                 <?php
-                     echo isset($_POST['register-error']) ? $_POST['register-error'] : '';      
+                    if(!empty($_POST['register-error'])) {
+
+                        foreach ($_POST['register-error'] as $key => $value) {
+                            echo '<li>';
+                            echo $_POST['register-error'][$key];
+                            echo '</li>';
+                        }
+
+                    }     
                 ?>
+                </ul>
+
 
             </div>
         </header>

@@ -57,7 +57,6 @@ try {
          */
         if($_GET['action'] === 'register') {
             $GLOBALS['controller']->register();
-            die(var_dump($_POST['error']));
         }
 
 
