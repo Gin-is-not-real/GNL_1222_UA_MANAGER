@@ -25,7 +25,7 @@
     [ ] - indications user
         [ ] - format attendu
         [ ] - champs requis
-    [ ] - verification
+    [X] - verification
         [X] - inputs securisés (via index.php)
         [X] - input anti bot 
     [ ] - validation
