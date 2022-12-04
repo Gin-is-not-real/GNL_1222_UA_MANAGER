@@ -36,7 +36,7 @@ try {
      */
     if(!isset($_GET['action'])) {
         require_once 'templates/connection.php';
-        // require_once 'templates/register.php';
+        require_once 'templates/register.php';
 
     }
     else {
