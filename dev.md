@@ -27,13 +27,14 @@
         [ ] - champs requis
     [ ] - verification
         [X] - inputs securisés (via index.php)
-        [ ] - input anti bot 
+        [X] - input anti bot 
     [ ] - validation
-        [ ] - php
+        [X] - php
         [ ] - js
     [X] - notification des erreurs
         [ ] - saisie vide (js)
-        [ ] - donnée non trouvée
+        [X] - saisie non valide (php)
+        [ ] - donnée non conforme (username déja dans database)
 
         
 ### index
