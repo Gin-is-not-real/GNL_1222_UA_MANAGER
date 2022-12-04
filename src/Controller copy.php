@@ -6,16 +6,15 @@ class Controller {
      * Check validaty of register form user inputs and return errors
      * @return Array - the list of errors
      */
-    public function valid_inputs() {
+    public function valid_register_inputs() {
         $errors = [];
-
     
         if($_SERVER["REQUEST_METHOD"] == "POST") {
     
             // username
             if(empty($_POST["username"])) {
-                $errors['username'] = "username is required";
-                // array_push($errors, "username is required");
+                // $errors['username'] = "username is required";
+                array_push($errors, "username is required");
             } 
             else {
                 $username = $_POST["username"];
@@ -24,8 +23,8 @@ class Controller {
                 // 2 spaces not allowed
 
                 if(!$user_chars ||  strlen($username) < 2 OR strlen($username) > 30) {
-                    $errors['username'] = "username must be between 2 and 30 characters in length and not include symbols";
-                    // array_push($errors, "username must be between 2 and 30 characters in length and not include symbols");
+                    // $errors['username'] = "username must be between 2 and 30 characters in length and not include symbols";
+                    array_push($errors, "username must be between 2 and 30 characters in length and not include symbols");
 
                 }
             }
@@ -33,8 +32,8 @@ class Controller {
 
             // email
             if(empty($_POST["email"])) {
-                $errors['email'] = "email is required";
-                // array_push($errors, "email is required");
+                // $errors['email'] = "email is required";
+                array_push($errors, "email is required");
 
             } 
             else {
@@ -42,8 +41,8 @@ class Controller {
 
                 // well-formed
                 if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                    $errors['email'] = "invalid email format";
-                    // array_push($errors, "invalid email format");
+                    // $errors['email'] = "invalid email format";
+                    array_push($errors, "invalid email format");
 
                 }
             }
@@ -51,8 +50,8 @@ class Controller {
 
             // password
             if(empty($_POST['password'])) {
-                $errors['password'] = "password is required";
-                // array_push($errors, "password is required");
+                // $errors['password'] = "password is required";
+                array_push($errors, "password is required");
 
             }  
             else {
@@ -65,8 +64,8 @@ class Controller {
                 $pass_specialChars = preg_match('@[^\w]@', $password);
 
                 if(!$pass_uppercase || !$pass_lowercase || !$pass_number || !$pass_specialChars || strlen($password) < 8) {
-                    $errors['password'] = 'password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.';
-                    // array_push($errors, "password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.");
+                    // $errors['password'] = 'password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.';
+                    array_push($errors, "password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.");
 
                 }
             }
@@ -74,16 +73,16 @@ class Controller {
 
             // r password
             if(empty($_POST['r-password'])) {
-                $errors['r-password'] = "password is required";
-                // array_push($errors, "password must be repeated");
+                // $errors['r-password'] = "password is required";
+                array_push($errors, "password must be repeated");
 
             }  
             else {
                 $r_password = $_POST['r-password'];
 
                 if($r_password !== $_POST['password']) {
-                    $errors['r-password'] = 'passwords must be identical.';
-                    // array_push($errors, "password must be identical");
+                    // $errors['r-password'] = 'passwords must be identical.';
+                    array_push($errors, "password must be identical");
 
                 }
             }
@@ -97,22 +96,16 @@ class Controller {
      * 
      */
     public function register() {
+
         // get inputs value from register form
         $email = $_POST['email'];
         $username = $_POST['username'];
         $password = $_POST['password'];        
         $r_password = $_POST['r-password'];
 
-        // check for validation
-        $errors = $this->valid_inputs();
-
-        // no errors, acces
-        if(empty($errors)) {
-            die('register !');
-        } 
-
-        // else display error on template
+        $errors = $this->valid_register_inputs();
         $_POST['register-error'] = $errors;
+
         require_once 'templates/register.php';
     }
 
@@ -126,30 +119,21 @@ class Controller {
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        // check for validation
-        $errors = $this->valid_inputs();
 
-        // remove unused errors
-        unset($errors['email']);
-        unset($errors['r-password']);
+        // check in database by calling manager function with username in param
+        $result = $GLOBALS['manager']->get_user($username);
+        $result = $result->fetch();
 
 
-        // fetch from database
-        if(empty($errors)) {
-            // check in database by calling manager function with username in param
-            $result = $GLOBALS['manager']->get_user($username);
-            $result = $result->fetch();
+        // check ifthe username as been find in the database
+        if($result !== false) {
 
-            // check ifthe username as been find in the database
-            if($result !== false) {
-
-                // check password correspondance
-                if(password_verify($password, $result['password'])) {
-                    // acces, passing by the index
-                    header('Location: index.php?action=acces');
-                }
-
+            // check password correspondance
+            if(password_verify($password, $result['password'])) {
+                // acces, passing by the index
+                header('Location: index.php?action=acces');
             }
+
         }
 
 

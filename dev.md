@@ -56,21 +56,13 @@
     - [provisoire] `die('acces !');`
 
 
-### form validation chart
-- email: xx@
 
 
-## controller
-    $username = $_POST["username"];
+## errors treatment
+### controller
 
-    // range
-    if(strlen($username) < 2 OR strlen($username) > 30) {
-        $errors['username'] = "username must be between 2 and 30";
-    } 
-    // allowed chars
-    if(!preg_match("/^[a-zA-Z0-9- ]*$/", $username)) {
-        $errors['username'] = "username contains characters not allowed, like symbols";
-    }
+
+
 
 
 ## erreurs a noter

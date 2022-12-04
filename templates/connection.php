@@ -12,6 +12,11 @@
                 <!-- POST connexion error -->
                 <?php
                     if(!empty($_POST['connexion-error'])) {
+
+                        // DEV
+                        echo var_dump($_POST['connexion-error']);
+                        echo '</br>';
+
                         echo '<ul><li>';
                         echo $_POST['connexion-error'];
                         echo '</li></ul>';
