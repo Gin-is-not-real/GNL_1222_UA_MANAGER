@@ -23,18 +23,98 @@ submitRegister.type = "button";
 
 function UAValidInputs(form) {
     // get only inputs of the activated form
-    let inptUsername = document.querySelectorAll('#' + form.id + ' input[name=username]');
-    let inpEmail = document.querySelectorAll('#' + form.id + ' input[name=username]');
-    let inptPassword = document.querySelectorAll('#' + form.id + ' input[name=username]');
-    let inptRPassword = document.querySelectorAll('#' + form.id + ' input[name=username]');
+    let inpUsername = document.querySelector('#' + form.id + ' input[name=username]');
+    let inpEmail = document.querySelector('#' + form.id + ' input[name=email]');
+    let inpPassword = document.querySelector('#' + form.id + ' input[name=password]');
+    let inpRPassword = document.querySelector('#' + form.id + ' input[name=r-password]');
 
-    console.log(inptUsername);
+    
+    let errors = [];
     
 
-    $errors = [];
-    
+    // USERNAME
+    // check if exist
+    if(inpUsername !== null) {
+        let username = inpUsername.value;
+
+        if(username === '') {
+            errors['username'] = "username is required"; 
+
+        }
+        else {
+            let patternUsername = /^[a-zA-Z0-9- ]*$/.test(username);
+
+            if(!patternUsername || username.length < 2 || username.length > 30) {
+                errors['username'] = "username must be between 2 and 30 characters in length and not include symbols";
+
+            }
+
+        }
+    }
 
 
+    // EMAIL
+    if(inpEmail !== null) {
+        let email = inpEmail.value;
+
+        if(email === '') {
+            errors['email'] = "email is required"; 
+
+        }
+        else {
+            let patternEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
+
+            if(!patternEmail) {
+                errors['email'] = "invalid email format";
+
+            }
+
+        }
+    }
+
+
+    // PASSWORD
+    if(inpPassword !== null) {
+        let password = inpPassword.value;
+
+        if(password === '') {
+            errors['password'] = "password is required"; 
+
+        }
+        else {
+            // Validate password strength
+            let testUppercase = /@[A-Z]@/.test(password);
+            let testLowercase = /@[a-z]@/.test(password);
+            let testNumber    = /@[0-9]@/.test(password);
+            let testSpecialChars = /@[^\w]@/.test(password);
+
+            if(!testUppercase || !testLowercase || !testNumber || !testSpecialChars) {
+                errors['password'] = 'password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.';
+
+            }
+
+        }
+
+
+        // REAPEAT PASSWORD 
+        if(inpRPassword !== null) {
+            let RPassword = inpRPassword.value;
+
+            if(RPassword === '') {
+                errors['Rpassword'] = "repeat password is required";
+
+            }
+            else {
+                if(RPassword !== inpPassword.value) {
+                    errors['Rpassword'] = 'passwords must be identical.';
+                }
+            }
+        }
+    }
+
+
+    console.log(errors);
+    return errors;
 }
 
 

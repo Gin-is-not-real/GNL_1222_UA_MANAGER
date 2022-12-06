@@ -29,7 +29,7 @@ class Controller {
                 $user_chars = preg_match("/^[a-zA-Z0-9- ]*$/", $username);
                 // 2 spaces not allowed
 
-                if(!$user_chars ||  strlen($username) < 2 OR strlen($username) > 30) {
+                if(!$user_chars ||  strlen($username) < 2 || strlen($username) > 30) {
                     $errors['username'] = "username must be between 2 and 30 characters in length and not include symbols";
                     // array_push($errors, "username must be between 2 and 30 characters in length and not include symbols");
 
