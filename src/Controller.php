@@ -80,7 +80,7 @@ class Controller {
 
             // r password
             if(empty($_POST['r-password'])) {
-                $errors['r-password'] = "password is required";
+                $errors['r-password'] = "repeat password is required";
                 // array_push($errors, "password must be repeated");
 
             }  

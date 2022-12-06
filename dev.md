@@ -38,7 +38,7 @@
 
 [ ] - Validations js
     [X] - bypass des submits
-
+    
         
 ### index
 - action: void

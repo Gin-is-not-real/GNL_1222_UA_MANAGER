@@ -1,11 +1,23 @@
 /////////////////////////////////////////////////
 // VARIABLES
-// let formConnection = document.querySelector('#UA-connection');
-// let formRegister = document.querySelector('#UA-register');
-
 let submitConnection = document.querySelector('#UA-connection input[type=submit]');
 let submitRegister = document.querySelector('#UA-register input[type=submit]');
 
+
+// let connectionInputs = [
+//     username = document.querySelector('#UA-connection input[name=username]'),
+//     password = document.querySelector('#UA-connection input[name=password]')
+// ];
+let connectionInputs = {
+    username: document.querySelector('#UA-connection input[name=username]'),
+    password: document.querySelector('#UA-connection input[name=password]')
+}
+let registerInputs = [
+    username = document.querySelector('#UA-register input[name=username]'),
+    password = document.querySelector('#UA-register input[name=password]'),
+    inpRegEmail = document.querySelector('#UA-register input[name=email]'),
+    inpRegRPassword = document.querySelector('#UA-register input[name=r-password]')
+];
 
 
 /////////////////////////////////////////////////
@@ -17,105 +29,9 @@ submitRegister.type = "button";
 
 
 
-
 /////////////////////////////////////////////////
 // FUNCTIONS
 
-function UAValidInputs(form) {
-    // get only inputs of the activated form
-    let inpUsername = document.querySelector('#' + form.id + ' input[name=username]');
-    let inpEmail = document.querySelector('#' + form.id + ' input[name=email]');
-    let inpPassword = document.querySelector('#' + form.id + ' input[name=password]');
-    let inpRPassword = document.querySelector('#' + form.id + ' input[name=r-password]');
-
-    
-    let errors = [];
-    
-
-    // USERNAME
-    // check if exist
-    if(inpUsername !== null) {
-        let username = inpUsername.value;
-
-        if(username === '') {
-            errors['username'] = "username is required"; 
-
-        }
-        else {
-            let patternUsername = /^[a-zA-Z0-9- ]*$/.test(username);
-
-            if(!patternUsername || username.length < 2 || username.length > 30) {
-                errors['username'] = "username must be between 2 and 30 characters in length and not include symbols";
-
-            }
-
-        }
-    }
-
-
-    // EMAIL
-    if(inpEmail !== null) {
-        let email = inpEmail.value;
-
-        if(email === '') {
-            errors['email'] = "email is required"; 
-
-        }
-        else {
-            let patternEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
-
-            if(!patternEmail) {
-                errors['email'] = "invalid email format";
-
-            }
-
-        }
-    }
-
-
-    // PASSWORD
-    if(inpPassword !== null) {
-        let password = inpPassword.value;
-
-        if(password === '') {
-            errors['password'] = "password is required"; 
-
-        }
-        else {
-            // Validate password strength
-            let testUppercase = /@[A-Z]@/.test(password);
-            let testLowercase = /@[a-z]@/.test(password);
-            let testNumber    = /@[0-9]@/.test(password);
-            let testSpecialChars = /@[^\w]@/.test(password);
-
-            if(!testUppercase || !testLowercase || !testNumber || !testSpecialChars) {
-                errors['password'] = 'password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.';
-
-            }
-
-        }
-
-
-        // REAPEAT PASSWORD 
-        if(inpRPassword !== null) {
-            let RPassword = inpRPassword.value;
-
-            if(RPassword === '') {
-                errors['Rpassword'] = "repeat password is required";
-
-            }
-            else {
-                if(RPassword !== inpPassword.value) {
-                    errors['Rpassword'] = 'passwords must be identical.';
-                }
-            }
-        }
-    }
-
-
-    console.log(errors);
-    return errors;
-}
 
 
 
@@ -129,14 +45,70 @@ function UAFormSubmit(submitElt) {
 }
 
 
+/**
+ * 
+ * @param {*} input 
+ * @returns 
+ */
+function getAssociateNoticeElt(input) {
+    let parentFormId = input.closest('form').id;
+
+    return document.querySelector('#' + parentFormId + ' .notice');
+}
+
+
+// inputs handler
+
+/**
+ * 
+ * @param {*} input 
+ */
+function usernameInputHandler(input) {
+    let username = input.value;
+    let noticeElt = getAssociateNoticeElt(input);
+    let error;
+
+    if(username === '') {
+        error = "username is required";
+
+    }
+    else {
+        // check for pattern 
+        let patternUsername = /^[a-zA-Z0-9- ]*$/.test(username);
+
+        // return errors 
+        if(!patternUsername || username.length < 2 || username.length > 30) {
+            error = "username must be between 2 and 30 characters in length and not include symbols";
+
+        }
+
+    }
+
+
+    if(error === undefined) {
+        input.classList.remove('invalid');
+        input.classList.add('valid');
+    }
+    else {
+        input.classList.add('invalid');
+        input.classList.remove('valid'); 
+
+    }
+
+    noticeElt.textContent = error;
+}
+
 
 /////////////////////////////////////////////////
 // EVENTS
+connectionInputs['username'].addEventListener('input', function(e) {
+    usernameInputHandler(e.target);
+})
 
 submitConnection.addEventListener('click', function(e) {
     console.log('connection');
 
-    // acces to submit parent form
+    // acces to the submit parent form
     UAValidInputs(this.closest('form'));
 })
 
