@@ -35,8 +35,7 @@ try {
      * go to connection page
      */
     if(!isset($_GET['action'])) {
-        require_once 'templates/connection.php';
-        require_once 'templates/register.php';
+        $GLOBALS['controller']->index();
 
     }
     else {

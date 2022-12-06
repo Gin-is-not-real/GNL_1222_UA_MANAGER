@@ -2,6 +2,12 @@
 
 class Controller {
 
+    public function index() {
+        require_once 'templates/home.php';
+
+    }
+
+
     /**
      * Check validaty of register form user inputs and return errors
      * @return Array - the list of errors
@@ -98,10 +104,10 @@ class Controller {
      */
     public function register() {
         // get inputs value from register form
-        $email = $_POST['email'];
-        $username = $_POST['username'];
-        $password = $_POST['password'];        
-        $r_password = $_POST['r-password'];
+        // $email = $_POST['email'];
+        // $username = $_POST['username'];
+        // $password = $_POST['password'];        
+        // $r_password = $_POST['r-password'];
 
         // check for validation
         $errors = $this->valid_inputs();
@@ -113,7 +119,7 @@ class Controller {
 
         // else display error on template
         $_POST['register-error'] = $errors;
-        require_once 'templates/register.php';
+        $this->index();
     }
 
 
@@ -153,8 +159,9 @@ class Controller {
         }
 
 
-        // ifuser not find or wrong password, return to connection page and notice user
+        // if user not find or wrong password, return to connection page and notice user
         $_POST['connexion-error'] = 'wrong username or password';
-        require_once 'templates/connection.php';
+        $this->index();
+
     }
 }

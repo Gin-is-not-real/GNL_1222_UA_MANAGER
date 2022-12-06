@@ -14,11 +14,6 @@
                 <?php
                     if(!empty($_POST['register-error'])) {
 
-                        // DEV
-                        echo var_dump($_POST['register-error']);
-                        echo '</br>';
-
-
                         foreach ($_POST['register-error'] as $key => $value) {
                             echo '<li>';
                             echo $_POST['register-error'][$key];
