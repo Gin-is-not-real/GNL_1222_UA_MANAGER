@@ -32,22 +32,22 @@
         <!-- inputs -->
         <div>
             <div>
-                <label for="email">email</label>
-                <input type="email" name="email" id="" required>
+                <label for="email" class="required">email</label>
+                <input type="email" name="email" required>
             </div>
 
             <div>
-                <label for="username">username</label>
-                <input type="text" name="username" id="" required>
+                <label for="username" class="required">username</label>
+                <input type="text" name="username" required>
             </div>
 
             <div>
-                <label for="password">password</label>
-                <input type="password" name="password" id="" required>
+                <label for="password" class="required" >password</label>
+                <input type="password" name="password" required>
             </div>
             <div>
-                <label for="r-password">repeat password</label>
-                <input type="password" name="r-password" id="" required>
+                <label for="r-password" class="required" >repeat password</label>
+                <input type="password" name="r-password" required>
             </div>
 
             <div>

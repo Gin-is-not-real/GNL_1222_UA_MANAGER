@@ -31,13 +31,13 @@
         <!-- inputs -->
         <div>
             <div>
-                <label for="username">Username</label>
-                <input type="text" name="username" id="" required>
+                <label for="username" class="required">Username</label>
+                <input type="text" name="username" required>
             </div>
 
             <div>
-                <label for="password">Password</label>
-                <input type="password" name="password" id="" required>
+                <label for="password" class="required">Password</label>
+                <input type="password" name="password" class="required" required>
             </div>
 
             <div>
