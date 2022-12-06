@@ -35,9 +35,9 @@
         [ ] - saisie vide (js)
         [X] - saisie non valide (php)
         [ ] - donnée non conforme (username déja dans database)
-        
-[ ] - Validations js
 
+[ ] - Validations js
+    [X] - bypass des submits
 
         
 ### index

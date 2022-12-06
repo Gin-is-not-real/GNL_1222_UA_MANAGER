@@ -32,12 +32,12 @@
         <div>
             <div>
                 <label for="username" class="required">Username</label>
-                <input type="text" name="username" required>
+                <input type="text" name="username" required="required">
             </div>
 
             <div>
                 <label for="password" class="required">Password</label>
-                <input type="password" name="password" class="required" required>
+                <input type="password" name="password" class="required" required="required">
             </div>
 
             <div>

@@ -33,21 +33,21 @@
         <div>
             <div>
                 <label for="email" class="required">email</label>
-                <input type="email" name="email" required>
+                <input type="email" name="email" id="ua-reg-email" required="required">
             </div>
 
             <div>
                 <label for="username" class="required">username</label>
-                <input type="text" name="username" required>
+                <input type="text" name="username" id="ua-reg-username" required="required">
             </div>
 
             <div>
                 <label for="password" class="required" >password</label>
-                <input type="password" name="password" required>
+                <input type="password" name="password" id="ua-reg-password" required="required">
             </div>
             <div>
                 <label for="r-password" class="required" >repeat password</label>
-                <input type="password" name="r-password" required>
+                <input type="password" name="r-password" id="ua-reg-rpassword" required="required">
             </div>
 
             <div>

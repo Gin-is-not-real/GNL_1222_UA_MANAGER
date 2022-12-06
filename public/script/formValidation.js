@@ -1,5 +1,8 @@
 /////////////////////////////////////////////////
 // VARIABLES
+// let formConnection = document.querySelector('#UA-connection');
+// let formRegister = document.querySelector('#UA-register');
+
 let submitConnection = document.querySelector('#UA-connection input[type=submit]');
 let submitRegister = document.querySelector('#UA-register input[type=submit]');
 
@@ -15,14 +18,35 @@ submitRegister.type = "button";
 
 
 
-
 /////////////////////////////////////////////////
 // FUNCTIONS
+
+function UAValidInputs(form) {
+    // get only inputs of the activated form
+    let inptUsername = document.querySelectorAll('#' + form.id + ' input[name=username]');
+    let inpEmail = document.querySelectorAll('#' + form.id + ' input[name=username]');
+    let inptPassword = document.querySelectorAll('#' + form.id + ' input[name=username]');
+    let inptRPassword = document.querySelectorAll('#' + form.id + ' input[name=username]');
+
+    console.log(inptUsername);
+    
+
+    $errors = [];
+    
+
+
+}
+
+
+
+/**
+ * Revert element type for submit and active it
+ * @param {HTMLSubmitElement} submitElt 
+ */
 function UAFormSubmit(submitElt) {
     submitElt.type ="submit";
     submitElt.click();
 }
-
 
 
 
@@ -32,11 +56,13 @@ function UAFormSubmit(submitElt) {
 submitConnection.addEventListener('click', function(e) {
     console.log('connection');
 
-    UAFormSubmit(this);
+    // acces to submit parent form
+    UAValidInputs(this.closest('form'));
 })
 
 submitRegister.addEventListener('click', function(e) {
     console.log('register');
 
-    UAFormSubmit(this);
+    // acces to submit parent form
+    UAValidInputs(this.closest('form'));
 })
