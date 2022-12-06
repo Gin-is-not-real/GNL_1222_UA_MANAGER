@@ -1,6 +1,6 @@
 <article>
 
-    <form action="index.php?action=login" method="post">
+    <form id="UA-connection" action="index.php?action=login" method="post">
 
         <header>
             <h2>Connexion</h2>
@@ -46,7 +46,7 @@
         </div>
 
         <!-- special -->
-        <input type="text" name="atbt" id="" value="" hidden>
+        <input type="text" name="atbt" id="" value="" class="hidden">
 
     </form>
 

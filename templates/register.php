@@ -1,6 +1,6 @@
 <article>
 
-    <form action="index.php?action=register" method="post">
+    <form id="UA-register" action="index.php?action=register" method="post">
 
         <header>
             <h2>Register</h2>

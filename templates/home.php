@@ -18,4 +18,6 @@
 
 
 </body>
+
+<script src="public/script/formValidation.js"></script>
 </html>
