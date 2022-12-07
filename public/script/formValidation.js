@@ -4,35 +4,29 @@ let submitConnection = document.querySelector('#UA-connection input[type=submit]
 let submitRegister = document.querySelector('#UA-register input[type=submit]');
 
 
-// let connectionInputs = [
-//     username = document.querySelector('#UA-connection input[name=username]'),
-//     password = document.querySelector('#UA-connection input[name=password]')
-// ];
 let connectionInputs = {
     username: document.querySelector('#UA-connection input[name=username]'),
     password: document.querySelector('#UA-connection input[name=password]')
-}
-let registerInputs = [
-    username = document.querySelector('#UA-register input[name=username]'),
-    password = document.querySelector('#UA-register input[name=password]'),
-    inpRegEmail = document.querySelector('#UA-register input[name=email]'),
-    inpRegRPassword = document.querySelector('#UA-register input[name=r-password]')
-];
+};
+let registerInputs = {
+    username: document.querySelector('#UA-register input[name=username]'),
+    password: document.querySelector('#UA-register input[name=password]'),
+    email: document.querySelector('#UA-register input[name=email]'),
+    repeat: document.querySelector('#UA-register input[name=r-password]')
+};
 
 
 /////////////////////////////////////////////////
 // MAIN
 
 // at first, change submit elements type for button for bypass the form submition
-submitConnection.type = "button";
+// submitConnection.type = "button";
 submitRegister.type = "button";
 
 
 
 /////////////////////////////////////////////////
 // FUNCTIONS
-
-
 
 
 /**
@@ -99,11 +93,98 @@ function usernameInputHandler(input) {
 }
 
 
+/**
+ * 
+ * @param {HTMLInputElement} input 
+ */
+function passwordInputHandler(input) {
+    let password = input.value;
+    let noticeElt = getAssociateNoticeElt(input);
+    let error;
+
+    if(password === '') {
+        error = "password is required";
+
+    }
+    else {
+        // Validate password strength
+        let passUppercase = /[A-Z]/.test(password);
+        let passLowercase = /[a-z]/.test(password);
+        let passNumber    = /[0-9]/.test(password);
+        let passSpecialChars = /[^\w]/.test(password);
+
+        // return errors 
+        if(!passUppercase || !passLowercase || !passNumber || !passSpecialChars || password.length < 8) {
+            error = 'password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character';
+
+        }
+
+    }
+
+
+    if(error === undefined) {
+        input.classList.remove('invalid');
+        input.classList.add('valid');
+    }
+    else {
+        input.classList.add('invalid');
+        input.classList.remove('valid'); 
+
+    }
+
+    noticeElt.textContent = error;
+}
+
+
+
+/**
+ * 
+ * @param {HTMLInputElement} input 
+ */
+ function repeatInputHandler(input) {
+    let repeat = input.value;
+    let noticeElt = getAssociateNoticeElt(input);
+    let error;
+
+    if(repeat === '') {
+        error = "repeat password is required";
+
+    }
+    else {
+        // return errors 
+        if(repeat !== registerInputs['password'].value) {
+            error = 'passwords must be identical';
+        }
+
+    }
+
+
+    if(error === undefined) {
+        input.classList.remove('invalid');
+        input.classList.add('valid');
+    }
+    else {
+        input.classList.add('invalid');
+        input.classList.remove('valid'); 
+
+    }
+
+    noticeElt.textContent = error;
+}
 /////////////////////////////////////////////////
 // EVENTS
-connectionInputs['username'].addEventListener('input', function(e) {
+
+registerInputs['username'].addEventListener('input', function(e) {
     usernameInputHandler(e.target);
 })
+registerInputs['password'].addEventListener('input', function(e) {
+    passwordInputHandler(e.target);
+})
+registerInputs['repeat'].addEventListener('input', function(e) {
+    repeatInputHandler(e.target);
+})
+
+
 
 submitConnection.addEventListener('click', function(e) {
     console.log('connection');
