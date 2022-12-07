@@ -4,10 +4,10 @@ let submitConnection = document.querySelector('#UA-connection input[type=submit]
 let submitRegister = document.querySelector('#UA-register input[type=submit]');
 
 
-let connectionInputs = {
-    username: document.querySelector('#UA-connection input[name=username]'),
-    password: document.querySelector('#UA-connection input[name=password]')
-};
+// let connectionInputs = {
+//     username: document.querySelector('#UA-connection input[name=username]'),
+//     password: document.querySelector('#UA-connection input[name=password]')
+// };
 let registerInputs = {
     username: document.querySelector('#UA-register input[name=username]'),
     password: document.querySelector('#UA-register input[name=password]'),
@@ -28,14 +28,33 @@ submitRegister.type = "button";
 /////////////////////////////////////////////////
 // FUNCTIONS
 
+function UAFormValid(form) {
+    let inputs = form.querySelectorAll('input');
+    let error;
+
+
+    inputs.forEach(input => {
+        if(!input.classList.contains('valid')) {
+            input.classList.add('invalid');
+            error = true;
+        }
+    });
+
+
+    if(!error) {
+        UAFormSubmit(form);
+    }
+}
+
 
 /**
  * Revert element type for submit and active it
  * @param {HTMLSubmitElement} submitElt 
  */
-function UAFormSubmit(submitElt) {
-    submitElt.type ="submit";
-    submitElt.click();
+function UAFormSubmit(form) {
+    let submit = form.closest('input[type=submit');
+    submit.type ="submit";
+    submit.click();
 }
 
 
@@ -187,15 +206,11 @@ registerInputs['repeat'].addEventListener('input', function(e) {
 
 
 submitConnection.addEventListener('click', function(e) {
-    console.log('connection');
-
     // acces to the submit parent form
-    UAValidInputs(this.closest('form'));
+    // UAValidInputs(this.closest('form'));
 })
 
 submitRegister.addEventListener('click', function(e) {
-    console.log('register');
-
     // acces to submit parent form
-    UAValidInputs(this.closest('form'));
+    UAFormValid(this.closest('form'));
 })

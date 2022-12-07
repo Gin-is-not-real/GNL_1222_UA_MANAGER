@@ -46,7 +46,7 @@
         </div>
 
         <!-- special -->
-        <input type="text" name="atbt" id="" value="" class="hidden">
+        <input type="text" name="atbt" id="atbt" value="" class="hidden">
 
     </form>
 
